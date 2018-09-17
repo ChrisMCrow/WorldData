@@ -4,24 +4,13 @@
 
 <div class="container">
   <h1>World Data</h1>
-  <form action="/Table" method="post">
+  <form action="/table" method="post">
     <div class="form-group">
-      <select name="filter" class="form-control">
-        <option value="city-name">City</option>
-        <option value="country-name">Country</option>
+      <select name="all-filter" class="form-control">
+        <option value="city">City</option>
+        <option value="country">Country</option>
       </select>
     </div>
-    <!-- <div class="form-group">
-      <select name="filter" class="form-control">
-        <option value="city-name">City</option>
-        <option value="city-population">City Population</option>
-        <option value="country-name">Country</option>
-        <option value="region">Region</option>
-        <option value="continent">Continent</option>
-        <option value="country-area">Country Area</option>
-        <option value="country-population">Country Population</option>
-      </select>
-    </div> -->
     <button type="submit" class="btn btn-primary">Filter</button>
   </form>
 </div>

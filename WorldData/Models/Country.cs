@@ -75,5 +75,31 @@ namespace WorldData.Models
         }
         return allCountries;
       }
+      public static List<Country> FilterCountryPopulation(int min, int max)
+      {
+        List<Country> allCountries = new List<Country> {};
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT * FROM country WHERE population BETWEEN " + min + " AND " + max + ";";
+        MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+        while (rdr.Read())
+        {
+          string countryCode = rdr.GetString(0);
+          string countryName = rdr.GetString(1);
+          string countryContinent = rdr.GetString(2);
+          string countryRegion = rdr.GetString(3);
+          float countrySurfaceArea = rdr.GetFloat(4);
+          int countryPopulation = rdr.GetInt32(5);
+          Country newCountry = new Country(countryName, countryCode, countryContinent, countryRegion, countrySurfaceArea, countryPopulation);
+          allCountries.Add(newCountry);
+        }
+        conn.Close();
+        if (conn !=null)
+        {
+          conn.Dispose();
+        }
+        return allCountries;
+      }
     }
 }
