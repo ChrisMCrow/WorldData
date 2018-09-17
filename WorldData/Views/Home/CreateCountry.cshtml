@@ -1,0 +1,50 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="container">
+  <h1>World Data</h1>
+  <form action="/Table" method="post">
+    <div class="form-group">
+      <select name="filter" class="form-control">
+        <option value="city-name">City</option>
+        <option value="country-name" selected>Country</option>
+      </select>
+    </div>
+    <!-- <div class="form-group">
+      <select name="filter" class="form-control">
+        <option value="city-name">City</option>
+        <option value="city-population">City Population</option>
+        <option value="country-name">Country</option>
+        <option value="region">Region</option>
+        <option value="continent">Continent</option>
+        <option value="country-area">Country Area</option>
+        <option value="country-population">Country Population</option>
+      </select>
+    </div> -->
+    <button type="submit" class="btn btn-primary">Filter</button>
+  </form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Region</th>
+        <th scope="col">Continent</th>
+        <th scope="col">Surface Area</th>
+        <th scope="col">Population</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach(var country in Model)
+      {
+        <tr>
+          <th scope="row">@country.GetCountryName()</th>
+          <th scope="row">@country.GetCountryRegion()</th>
+          <th scope="row">@country.GetCountryContinent()</th>
+          <th scope="row">@country.GetCountrySurfaceArea()</th>
+          <th scope="row">@country.GetCountryPopulation()</th>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

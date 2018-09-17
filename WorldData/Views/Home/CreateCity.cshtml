@@ -1,0 +1,44 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="container">
+  <h1>World Data</h1>
+  <form action="/table" method="post">
+    <div class="form-group">
+      <select name="filter" class="form-control">
+        <option value="city-name" selected>City</option>
+        <option value="country-name">Country</option>
+      </select>
+    </div>
+    <!-- <div class="form-group">
+      <select name="filter" class="form-control">
+        <option value="city-name">City</option>
+        <option value="city-population">City Population</option>
+        <option value="country-code">Country Code</option>
+      </select>
+    </div> -->
+    <button type="submit" class="btn btn-primary">Filter</button>
+  </form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">City Id</th>
+        <th scope="col">City Name</th>
+        <th scope="col">Country Code</th>
+        <th scope="col">Population</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach(var city in Model)
+      {
+        <tr>
+          <th scope="row">@city.GetCityId()</th>
+          <th scope="row">@city.GetCityName()</th>
+          <th scope="row">@city.GetCountryCode()</th>
+          <th scope="row">@city.GetCityPopulation()</th>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
